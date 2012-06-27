@@ -44,6 +44,7 @@ option(BUILD_PYTHON_BINDINGS "Build Python bindings" ON)
 option(BUILD_MATLAB_BINDINGS "Build Matlab bindings" ON)
 option(BUILD_CUDA_LIB "Build CUDA library" ON)
 option(USE_MPI "Use MPI" OFF)
+option(BUILD_TESTING "Enable tests" ON)
 
 set(NVCC_COMPILER_BINDIR "" CACHE PATH  "Directory where nvcc should look for C++ compiler. This is passed to nvcc through the --compiler-bindir option.")
 
@@ -144,7 +145,9 @@ endif(WIN32)
 add_subdirectory( cmake )
 add_subdirectory( src )
 add_subdirectory( examples )
-add_subdirectory( test )
+if(BUILD_TESTING)
+  add_subdirectory( test )
+endif()
 add_subdirectory( doc )
 
 
